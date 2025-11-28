@@ -5,13 +5,11 @@
              version="2.1">
 
     <persistence-unit name="LabPU" transaction-type="JTA">
-        <!-- WildFly сам подцепит Hibernate как провайдер -->
         <jta-data-source>java:/PostgresDS</jta-data-source>
 
         <class>com.example.model.HitResult</class>
 
         <properties>
-            <!-- Только на разработке: создать/обновить схему -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
