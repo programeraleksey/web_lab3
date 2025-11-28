@@ -38,38 +38,38 @@
         <h3>Ввод координат</h3>
         <div class="coord-box">
             <span class="coord-label">X:</span>
-            <h:selectOneMenu value="#{dbBean.x}">
-                <f:selectItems value="#{dbBean.possibleX}" />
+            <h:selectOneMenu value="#{coordBean.x}">
+                <f:selectItems value="#{coordBean.possibleX}" />
             </h:selectOneMenu>
         </div>
 
         <div class="coord-box">
             <span class="coord-label">Y:</span>
-            <h:inputText id="valueY" value="#{dbBean.y}" />
+            <h:inputText id="valueY" value="#{coordBean.y}" />
             <div id="msg" style="color:red;"></div>
         </div>
 
         <div class="coord-box">
             <span class="coord-label">R:</span>
-            <ace:sliderEntry value="#{dbBean.slideR}" min="0" max="12" step="1" showTooltip="true">
+            <ace:sliderEntry value="#{coordBean.slideR}" min="0" max="12" step="1" showTooltip="true">
                 <ace:ajax execute="@this" render="rValue" onComplete="drawGraph();" />
             </ace:sliderEntry>
 
-            <h:outputText id="rValue" value="#{dbBean.r}" />
+            <h:outputText id="rValue" value="#{coordBean.r}" />
         </div>
 
-        <h:commandButton id="userBtn" value="Проверить и сохранить" action="#{dbBean.process}">
+        <h:commandButton id="userBtn" value="Проверить и сохранить" action="#{coordBean.process}">
             <f:ajax execute="@form" render="pointsJson resultsPanel" onevent="onPointsUpdated" />
         </h:commandButton>
 
-        <h:outputText id="pointsJson" value="#{dbBean.pointsJson}" style="display:none" escape="false" />
+        <h:outputText id="pointsJson" value="#{dataBaseBean.pointsJson}" style="display:none" escape="false" />
         <h:messages />
 
-        <h:panelGroup id="resultsPanel" rendered="#{not empty dbBean.results}">
+        <h:panelGroup id="resultsPanel" rendered="#{not empty dataBaseBean.results}">
 
             <h3>Сохранённые результаты</h3>
 
-            <h:dataTable value="#{dbBean.results}" var="res" border="1">
+            <h:dataTable value="#{dataBaseBean.results}" var="res" border="1" rowClasses="result-row">
                 <h:column>
                     <f:facet name="header">X</f:facet>
                     #{res.x}
@@ -96,10 +96,10 @@
 
 
     <h:form id="FormForJS" style="display:none">
-        <h:inputText id="FieldX" value="#{dbBean.x}" />
-        <h:inputText id="FieldY" value="#{dbBean.y}" />
-        <h:inputText id="FieldR" value="#{dbBean.r}" />
-        <h:commandButton id="submitBtn" action="#{dbBean.process}">
+        <h:inputText id="FieldX" value="#{coordBean.x}" />
+        <h:inputText id="FieldY" value="#{coordBean.y}" />
+        <h:inputText id="FieldR" value="#{coordBean.r}" />
+        <h:commandButton id="submitBtn" action="#{coordBean.process}">
             <f:ajax execute="@form" render=":coordsForm:pointsJson :coordsForm:resultsPanel"
                 onevent="onPointsUpdated" />
         </h:commandButton>
