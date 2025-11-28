@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Named("dbBean")
 @SessionScoped
-public class DBBean implements Serializable {
+public class CoordBean implements Serializable {
 
     private double x;
     private double y;
