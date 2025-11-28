@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.example'
+version = '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax:javaee-api:7.0'
+
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation('org.icefaces:icefaces:4.3.0') {
+        exclude group: 'org.glassfish', module: 'javax.faces'
+    }
+    implementation('org.icefaces:icefaces-ace:4.3.0') {
+        exclude group: 'org.glassfish', module: 'javax.faces'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+war {
+    archiveFileName = 'ROOT.war'
+}
