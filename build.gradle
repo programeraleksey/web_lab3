@@ -18,12 +18,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
 
-    implementation('org.icefaces:icefaces:4.3.0') {
-        exclude group: 'org.glassfish', module: 'javax.faces'
-    }
-    implementation('org.icefaces:icefaces-ace:4.3.0') {
-        exclude group: 'org.glassfish', module: 'javax.faces'
-    }
+    implementation 'org.primefaces:primefaces:8.0'
 }
 
 tasks.withType(JavaCompile) {

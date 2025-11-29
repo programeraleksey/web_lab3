@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ace="http://www.icefaces.org/icefaces/components">
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Тест БД</title>
     <h:outputScript library="js" name="coords.js" target="body" />
@@ -51,11 +51,8 @@
 
         <div class="coord-box">
             <span class="coord-label">R:</span>
-            <ace:sliderEntry value="#{coordBean.slideR}" min="0" max="12" step="1" showTooltip="true">
-                <ace:ajax execute="@this" render="rValue" onComplete="drawGraph();" />
-            </ace:sliderEntry>
-
-            <h:outputText id="rValue" value="#{coordBean.r}" />
+            <h:inputText id="valueR" value="#{coordBean.r}" />
+            <div id="msgR" style="color:red;"></div>
         </div>
 
         <h:commandButton id="userBtn" value="Проверить и сохранить" action="#{coordBean.process}">

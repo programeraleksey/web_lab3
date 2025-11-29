@@ -1,8 +1,8 @@
 function drawGraph() {
     ctx.clearRect(0, 0, width, height);
 
-    let span = document.getElementById("coordsForm:rValue");
-    let text = span.textContent || span.innerText;
+    let span = document.getElementById("coordsForm:valueR");
+    let text = span.value.trim || span.innerText;
     R = parseFloat(text) * unit;
     if (isNaN(R) || R <= 0) { R = unit * 3.5; }
 
