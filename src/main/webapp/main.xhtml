@@ -24,6 +24,29 @@
             margin-bottom: 6px;
             display: block;
         }
+
+        .result-row {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-row-new {
+            opacity: 0;
+            transform: translateY(-5px);
+            animation: fadeInRow 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeInRow {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </h:head>
 <h:body>
@@ -67,6 +90,7 @@
             <h3>Сохранённые результаты</h3>
 
             <h:dataTable value="#{dataBaseBean.results}" var="res" border="1" rowClasses="result-row">
+
                 <h:column>
                     <f:facet name="header">X</f:facet>
                     #{res.x}
@@ -111,6 +135,17 @@
         if (data.status === 'success') {
         Loadpoints();
         drawGraph();
+
+        const table = document.querySelector('#coordsForm\\:resultsPanel table');
+        if (table) {
+        const rows = table.querySelectorAll('tr');
+        if (rows.length > 1) {
+        const firstDataRow = rows[1];
+        firstDataRow.classList.remove('result-row-new');
+        void firstDataRow.offsetWidth;
+        firstDataRow.classList.add('result-row-new');
+        }
+        }
         }
         }
     </h:outputScript>
