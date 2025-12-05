@@ -1,0 +1,13 @@
+ALTER TABLE timeline_item
+    ADD CONSTRAINT check_time
+    CHECK (start_time < end_time);
+
+
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+
+
+ALTER TABLE timeline_item
+ADD CONSTRAINT no_overlap
+EXCLUDE USING gist (
+        tsrange(start_time, end_time, '[)') WITH &&
+        );

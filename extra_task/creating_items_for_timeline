@@ -1,0 +1,22 @@
+CREATE TABLE figure (
+    id         SERIAL PRIMARY KEY,
+    type       figure_type NOT NULL,
+    x_coord    DOUBLE PRECISION NOT NULL,
+    y_coord    DOUBLE PRECISION NOT NULL
+);
+
+CREATE TABLE graphs (
+    id                     SERIAL PRIMARY KEY,
+    first_quarter_figure   INT NULL REFERENCES figure(id) ON DELETE CASCADE,
+    second_quarter_figure  INT NULL REFERENCES figure(id) ON DELETE CASCADE,
+    third_quarter_figure   INT NULL REFERENCES figure(id) ON DELETE CASCADE,
+    fourth_quarter_figure  INT NULL REFERENCES figure(id) ON DELETE CASCADE
+);
+
+CREATE TABLE timeline_item (
+    id         SERIAL PRIMARY KEY,
+    graph_id   INT NOT NULL REFERENCES graphs(id) ON DELETE CASCADE,
+    r          DOUBLE PRECISION NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time   TIMESTAMP
+);

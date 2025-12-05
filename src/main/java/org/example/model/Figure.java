@@ -20,7 +20,6 @@ public class Figure {
     @Column(name = "y_coord", nullable = false)
     public double yCoord;
 
-    // геттеры/сеттеры
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
