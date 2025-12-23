@@ -31,7 +31,6 @@ public class HitResult {
         this.createdAt = createdAt;
     }
 
-    // геттеры/сеттеры
     public Long getId() { return id; }
 
     public double getX() { return x; }
